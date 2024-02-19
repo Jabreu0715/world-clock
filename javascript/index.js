@@ -1,13 +1,13 @@
 function updateTime() {
-  //NewYork
-  let newYorkElement = document.querySelector("#new-york");
-  if (newYorkElement) {
-    let newYorkDateElement = newYorkElement.querySelector(".date");
-    let newYorkTimeElement = newYorkElement.querySelector(".time");
-    let newYorkTime = moment().tz("America/New_York");
+  //Phoenix
+  let phoenixElement = document.querySelector("#phoenix");
+  if (phoenixElement) {
+    let phoenixDateElement = phoenixElement.querySelector(".date");
+    let phoenixTimeElement = phoenixElement.querySelector(".time");
+    let phoenixTime = moment().tz("America/Phoenix");
 
-    newYorkDateElement.innerHTML = newYorkTime.format("MMMM Do, YYYY");
-    newYorkTimeElement.innerHTML = newYorkTime.format(
+    phoenixDateElement.innerHTML = phoenixTime.format("MMMM Do, YYYY");
+    phoenixTimeElement.innerHTML = phoenixTime.format(
       "h:mm:ss [<small>]A[</small>]"
     );
   }
@@ -39,6 +39,9 @@ function updateTime() {
 
 function updateCity(event) {
   let cityTimeZone = event.target.value;
+  if (cityTimeZone === "current") {
+    cityTimeZone = moment.tz.guess();
+  }
   let cityName = cityTimeZone.replace("_", " ").split("/")[1];
   let cityTime = moment().tz(cityTimeZone);
   let citiesElement = document.querySelector("#cities");
